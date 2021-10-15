@@ -1,8 +1,16 @@
-import React from "react";
+import React , {useState} from "react";
 import { Input } from "antd";
+// import DatePicker from "react-datepicker";
+
+// import "react-datepicker/dist/react-datepicker.css";
+
+
 
 const FormElement=({ handleSubmit,name,setName,comment, setComment}) => (
-    <form onSubmit={handleSubmit}>
+    
+    
+    
+    (<form onSubmit={handleSubmit} style={{marginTop:'0px'}}>
         <div className="form-group">
             <Input
             type="text"
@@ -13,6 +21,7 @@ const FormElement=({ handleSubmit,name,setName,comment, setComment}) => (
             autoFocus
             required
             />
+           
              <Input className="crudForm"
             type="text"
             placeholder="Enter your comment"
@@ -22,13 +31,21 @@ const FormElement=({ handleSubmit,name,setName,comment, setComment}) => (
             autoFocus
             required
             />
+
+                                {/* <DatePicker 
+                             
+                             dateFormat='dd/MM/yyyy'
+                             maxDate={new Date()}
+                            />       */}
             <br/>
-            <button className="btn btn-primary mt-1">Submit</button>
+            <br></br>
+            <button className="btn btn-primary mt-1" style={{marginLeft:'70px',marginRight:'30px'}}>Submit</button>
             <button className="btn btn-danger mt-1" onClick={()=>setName("")} >
                 Cancel
                 </button>
         </div>
     </form>
+    )
 );
 
 export default FormElement;

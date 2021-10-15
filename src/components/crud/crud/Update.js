@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { toast} from "react-toastify";
-import { updateName, getName, getComment } from "./api";
+import { updateName, getName } from "./api";
 import FormElement from "./Form";
 import Loading from "./Loading";
 
@@ -10,26 +10,33 @@ const Update = ({history, match})=>{
     const [loading, setLoading]=useState(false);
 
     useEffect(()=>{
-        loadName();
+        loadName() &&
         loadComment();
+        
+        
     },[]);
 
-    console.log("params", match.params.id);
+    
     console.log("name", name);
+    console.log( "comment",comment); 
+    
 
     const loadName=()=>{
-        getName(match.params.id).then((d)=>setName(d.data.loadName));
+        getName(match.params.id).then((d)=>setName(d.data.name && d.data.comment))  
+        //  && 
+        // getName(match.params.id).then((d)=>setComment(d.data.loadComment));
     };
 
     const loadComment=()=>{
-        getComment(match.params.id).then((d)=>setComment( d.data.comment));
+        getName(match.params.id).then((d)=>setComment( d.data.comment && d.data.name));
     };
     const handleSubmit=(e)=>{
         e.preventDefault();
         setLoading(true);
-        updateName(match.params.id, {name},{comment}).then((res)=>{
+        //match.params.id
+        updateName(match.params.id,{comment},{name}).then((res)=>{
             setLoading(false);
-            setName("");
+            setName("") &&
             setComment("")
             toast.success(`${res.data.name} and the comment ${res.data.comment} is updated`);
             history.push("/");

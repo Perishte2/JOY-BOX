@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+*{
+  box-sizing:border-box;
+}
 @media only screen and (max-width:1519px){
    .contactPhone{
      margin-right:-130px;
@@ -97,7 +100,7 @@
 @media only screen and (max-width:1343px){
 .content{
   width:100%;
-  background-color: lightblue;
+  background-color: white;
 }
   .logotype{
   width:15px;
